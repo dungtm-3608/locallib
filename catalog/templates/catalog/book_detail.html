@@ -1,0 +1,21 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <h1>Title: {{ book.title }}</h1>
+
+  <p>
+    <strong>Author:</strong> <a href="">{{ book.author }}</a>
+  </p>
+  <p>
+    <strong>Summary:</strong> <a href="">{{ book.summary }}</a>
+  </p>
+  <p>
+    <strong>ISBN:</strong> <a href="">{{ book.isbn }}</a>
+  </p>
+  <p>
+    <strong>Language:</strong> <a href="">{{ book.language }}</a>
+  </p>
+  <p>
+    <strong>Genre:</strong> <a href="">{{ book.genre.all|join:', ' }}</a>
+  </p>
+{% endblock %}
