@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+{% load i18n %}
+<html lang="en">
+  <head>
+    {% block title %}
+      <title>{% trans 'Local Library' %}</title>
+    {% endblock %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous" />
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+  </head>
+
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-2">
+          {% block sidebar %}
+            <ul class="sidebar-nav">
+              <li>
+                <a href="{% url 'index' %}">{% trans 'Home' %}</a>
+              </li>
+              <li>
+                <a href="{% url 'books' %}">{% trans 'All books' %}</a>
+              </li>
+              <li>
+                <a href="{% url 'authors' %}">{% trans 'All authors' %}</a>
+              </li>
+              <li>
+                <a href="{% url 'my-borrowed' %}">{% trans 'Borrowed books' %}</a>
+              </li>
+              {% if user.is_authenticated %}
+                <li>
+                  {% trans 'User:' %} {{ user.username }}
+                </li>
+                <li>
+                  <a href="{% url 'logout' %}?next={{ request.path }}">{% trans 'Logout' %}</a>
+                </li>
+              {% else %}
+                <li>
+                  <a href="{% url 'login' %}?next={{ request.path }}">{% trans 'Login' %}</a>
+                </li>
+              {% endif %}
+            </ul>
+            <form action="{% url 'set_language' %}" method="post" style="margin-top: 20px;">
+              {% csrf_token %}
+              <input name="next" type="hidden" value="{{ request.path }}">
+              <select name="language">
+                <option value="en" {% if LANGUAGE_CODE == 'en' %}selected{% endif %}>English</option>
+                <option value="vi" {% if LANGUAGE_CODE == 'vi' %}selected{% endif %}>Tiếng Việt</option>
+              </select>
+              <input type="submit" value="{% trans 'Change language' %}">
+            </form>
+            {% if LANGUAGE_CODE %}
+              <p>LANGUAGE_CODE hiện tại: {{ LANGUAGE_CODE }}</p>
+            {% endif %}
+          {% endblock %}
+        </div>
+        <div class="col-sm-10">
+          {% block content %}
+
+          {% endblock %}
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

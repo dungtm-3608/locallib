@@ -1,0 +1,428 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-07-03 15:40+0700\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: vi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: catalog/enums.py:5 catalog/models.py:74
+msgid "Maintenance"
+msgstr "Đang bảo trì"
+
+#: catalog/enums.py:6 catalog/models.py:75
+msgid "On loan"
+msgstr "Đang cho mượn"
+
+#: catalog/enums.py:7 catalog/models.py:76
+#, fuzzy
+#| msgid "Copies Available:"
+msgid "Available"
+msgstr "Số lượng có sẵn:"
+
+#: catalog/enums.py:8 catalog/models.py:77
+msgid "Reserved"
+msgstr "Đã được đặt trước"
+
+#: catalog/forms.py:10 catalog/forms.py:32
+msgid "Enter a date between now and 4 weeks (default 3)."
+msgstr "Nhập một ngày trong khoảng từ bây giờ đến 4 tuần (mặc định là 3)."
+
+#: catalog/forms.py:18 catalog/forms.py:39
+msgid "Invalid date - renewal in past"
+msgstr "Ngày gia hạn không hợp lệ - đã quá hạn"
+
+#: catalog/forms.py:22 catalog/forms.py:43
+msgid "Invalid date - renewal more than 4 weeks ahead"
+msgstr "Ngày gia hạn không hợp lệ - gia hạn quá 4 tuần"
+
+#: catalog/forms.py:31
+msgid "Renewal date"
+msgstr "Ngày gia hạn"
+
+#: catalog/models.py:12
+msgid "Enter a book genre (e.g. Science Fiction)"
+msgstr "Nhập một thể loại sách (ví dụ: Khoa học viễn tưởng)"
+
+#: catalog/models.py:22
+msgid "Enter the title of the book"
+msgstr "Nhập một tiêu đề cho cuốn sách"
+
+#: catalog/models.py:27
+msgid "Enter a brief description of the book"
+msgstr "Nhập một mô tả ngắn về cuốn sách"
+
+#: catalog/models.py:30
+#, fuzzy
+#| msgid "ISBN:"
+msgid "ISBN"
+msgstr "ISBN:"
+
+#: catalog/models.py:32
+msgid ""
+"13 Character <a href=\"https://www.isbn-international.org/content/what-"
+"isbn\">ISBN number</a>"
+msgstr ""
+"13 ký tự <a href=\"https://www.isbn-international.org/content/what-isbn\">Số "
+"ISBN</a>"
+
+#: catalog/models.py:36
+msgid "Select a genre for this book"
+msgstr "Chọn một thể loại cho cuốn sách này"
+
+#: catalog/models.py:54
+msgid "Unique ID for this particular book across whole library"
+msgstr "Mã nhận dạng duy nhất cho cuốn sách này trên toàn bộ thư viện"
+
+#: catalog/models.py:59
+msgid "Enter the imprint of the book"
+msgstr "Nhập dấu hiệu của cuốn sách"
+
+#: catalog/models.py:64
+msgid "Enter the date when this book is due back"
+msgstr "Nhập ngày khi cuốn sách này phải trả lại"
+
+#: catalog/models.py:71
+msgid "Select a borrower for this book"
+msgstr "Chọn một người mượn cho cuốn sách này"
+
+#: catalog/models.py:85
+#, fuzzy
+#| msgid "Copies Available:"
+msgid "Book availability"
+msgstr "Không có cuốn sách nào."
+
+#: catalog/models.py:91
+msgid "Set book as returned"
+msgstr "Đặt sách này là đã trả"
+
+#: catalog/models.py:105
+msgid "Enter the author's first name"
+msgstr "Nhập tên của tác giả"
+
+#: catalog/models.py:109
+msgid "Enter the author's last name"
+msgstr "Nhập họ của tác giả"
+
+#: catalog/models.py:114
+msgid "Enter the author's date of birth"
+msgstr "Nhập ngày sinh của tác giả"
+
+#: catalog/models.py:119
+msgid "Enter the author's date of death (if applicable)"
+msgstr "Nhập ngày mất của tác giả (nếu có)"
+
+#: catalog/templates/base_generic.html:6
+msgid "Local Library"
+msgstr "Thư viện địa phương"
+
+#: catalog/templates/base_generic.html:23
+msgid "Home"
+msgstr "Trang chủ"
+
+#: catalog/templates/base_generic.html:26
+msgid "All books"
+msgstr "Tất cả sách"
+
+#: catalog/templates/base_generic.html:29
+msgid "All authors"
+msgstr "Tất cả tác giả"
+
+#: catalog/templates/base_generic.html:32
+msgid "Borrowed books"
+msgstr "Các cuốn sách đã mượn"
+
+#: catalog/templates/base_generic.html:36
+msgid "User:"
+msgstr "Người dùng:"
+
+#: catalog/templates/base_generic.html:39
+msgid "Logout"
+msgstr "Đăng xuất"
+
+#: catalog/templates/base_generic.html:43
+msgid "Login"
+msgstr "Đăng nhập"
+
+#: catalog/templates/base_generic.html:54
+msgid "Change language"
+msgstr "Thay đổi ngôn ngữ"
+
+#: catalog/templates/catalog/author_delete_confirm.html:5
+msgid "Delete Author"
+msgstr "Xóa tác giả"
+
+#: catalog/templates/catalog/author_delete_confirm.html:8
+#, python-format
+msgid "Are you sure you want to delete the author <strong>%(author)s</strong>?"
+msgstr "Bạn có chắc chắn muốn xóa tác giả <strong>%(author)s</strong>?"
+
+#: catalog/templates/catalog/author_delete_confirm.html:13
+msgid "Yes, delete"
+msgstr "Có, xóa"
+
+#: catalog/templates/catalog/author_detail.html:5
+#: catalog/templates/catalog/book_detail.html:8
+#, fuzzy
+#| msgid "Authors:"
+msgid "Author:"
+msgstr "Tác giả:"
+
+#: catalog/templates/catalog/author_detail.html:8
+msgid "Date of Birth:"
+msgstr "Ngày sinh:"
+
+#: catalog/templates/catalog/author_detail.html:13
+msgid "Date of Death:"
+msgstr "Ngày mất:"
+
+#: catalog/templates/catalog/author_form.html:8
+#: catalog/templates/catalog/book_renew_librarian.html:16
+msgid "Submit"
+msgstr "Gửi"
+
+#: catalog/templates/catalog/author_list.html:5
+#, fuzzy
+#| msgid "Authors:"
+msgid "Author List"
+msgstr "Các tác giả:"
+
+#: catalog/templates/catalog/author_list.html:6
+#, fuzzy
+#| msgid "All authors"
+msgid "New author"
+msgstr "Tác giả mới"
+
+#: catalog/templates/catalog/author_list.html:13
+msgid "Born:"
+msgstr "Sinh:"
+
+#: catalog/templates/catalog/author_list.html:16
+msgid "Died:"
+msgstr "Mất:"
+
+#: catalog/templates/catalog/author_list.html:23
+msgid "No authors available."
+msgstr "Không có tác giả nào."
+
+#: catalog/templates/catalog/author_list.html:31
+#: catalog/templates/catalog/book_list.html:24
+msgid "previous"
+msgstr "Trước"
+
+#: catalog/templates/catalog/author_list.html:34
+#: catalog/templates/catalog/book_list.html:27
+#, python-format
+msgid ""
+"Page %(current)s of %(total)s\n"
+"          "
+msgstr "Trang %(current)s của %(total)s"
+
+#: catalog/templates/catalog/author_list.html:38
+#: catalog/templates/catalog/book_list.html:31
+msgid "next"
+msgstr "Tiếp"
+
+#: catalog/templates/catalog/book_detail.html:5
+msgid "Title:"
+msgstr "Tiêu đề:"
+
+#: catalog/templates/catalog/book_detail.html:11
+msgid "Summary:"
+msgstr "Tóm tắt:"
+
+#: catalog/templates/catalog/book_detail.html:14
+msgid "ISBN:"
+msgstr "ISBN:"
+
+#: catalog/templates/catalog/book_detail.html:17
+msgid "Language:"
+msgstr "Ngôn ngữ:"
+
+#: catalog/templates/catalog/book_detail.html:20
+msgid "Genre:"
+msgstr "Thể loại:"
+
+#: catalog/templates/catalog/book_list.html:5
+#, fuzzy
+#| msgid "Books:"
+msgid "Book List"
+msgstr "Các cuốn sách:"
+
+#: catalog/templates/catalog/book_list.html:16
+#, fuzzy
+#| msgid "Copies Available:"
+msgid "No books available."
+msgstr "Không có cuốn sách nào."
+
+#: catalog/templates/catalog/book_renew_librarian.html:5
+msgid "Renew:"
+msgstr "Gia hạn:"
+
+#: catalog/templates/catalog/book_renew_librarian.html:7
+#, fuzzy
+#| msgid "Borrowed books"
+msgid "Borrower:"
+msgstr "Người mượn:"
+
+#: catalog/templates/catalog/book_renew_librarian.html:10
+msgid "Due date:"
+msgstr "Ngày hết hạn:"
+
+#: catalog/templates/catalog/bookinstance_list_borrowed_user.html:5
+#, fuzzy
+#| msgid "Borrowed books"
+msgid "Borrowed Books"
+msgstr "Các cuốn sách đã mượn"
+
+#: catalog/templates/catalog/bookinstance_list_borrowed_user.html:13
+msgid "Renew"
+msgstr "Gia hạn"
+
+#: catalog/templates/catalog/bookinstance_list_borrowed_user.html:19
+#, fuzzy
+#| msgid "Borrowed books"
+msgid "No borrowed books found."
+msgstr "Không có cuốn sách nào được mượn."
+
+#: catalog/templates/index.html:5
+msgid "Local Library Home"
+msgstr "Trang chủ Thư viện địa phương"
+
+#: catalog/templates/index.html:7
+msgid ""
+"Welcome to the Local Library. This is your one-stop destination for all your "
+"book needs."
+msgstr ""
+"Chào mừng bạn đến với Thư viện địa phương. Đây là nơi bạn có thể tìm thấy "
+"tất cả sách của bạn."
+
+#: catalog/templates/index.html:9
+msgid "Dynamic content"
+msgstr "Nội dung động"
+
+#: catalog/templates/index.html:11
+msgid "Here you can find the latest books, authors, and more."
+msgstr ""
+"Bạn có thể tìm thấy các cuốn sách mới nhất, tác giả và nhiều hơn nữa ở đây."
+
+#: catalog/templates/index.html:16
+msgid "Books:"
+msgstr "Các cuốn sách:"
+
+#: catalog/templates/index.html:19
+msgid "Copies:"
+msgstr "Số lượng:"
+
+#: catalog/templates/index.html:22
+msgid "Copies Available:"
+msgstr "Số lượng có sẵn:"
+
+#: catalog/templates/index.html:25
+msgid "Authors:"
+msgstr "Các tác giả:"
+
+#: catalog/templates/index.html:30
+#, python-format
+msgid "You have visited this page %(counter)s time."
+msgid_plural "You have visited this page %(counter)s times."
+msgstr[0] "Bạn đã truy cập trang này %(counter)s lần."
+msgstr[1] "Bạn đã truy cập trang này %(counter)s lần."
+
+#: catalog/views.py:50 catalog/views.py:142
+msgid "This is just some data"
+msgstr "Đây chỉ là một số dữ liệu"
+
+#: templates/registration/login.html:7
+msgid "Your username and password didn't match. Please try again."
+msgstr "Tên người dùng và mật khẩu của bạn không khớp. Vui lòng thử lại."
+
+#: templates/registration/login.html:14
+msgid ""
+"Your account doesn't have access to this page. To proceed, please login with "
+"an account that has access."
+msgstr ""
+"Tài khoản của bạn không có quyền truy cập vào trang này. Để tiếp tục, vui "
+"lòng đăng nhập bằng một tài khoản có quyền truy cập."
+
+#: templates/registration/login.html:18
+msgid "Please login to see this page."
+msgstr "Vui lòng đăng nhập để xem trang này."
+
+#: templates/registration/login.html:35
+#, fuzzy
+#| msgid "Login"
+msgid "login"
+msgstr "Đăng nhập"
+
+#: templates/registration/login.html:39
+msgid "Lost password?"
+msgstr "Quên mật khẩu?"
+
+#: templates/registration/logout.html:6
+msgid "Logged out successfully."
+msgstr "Đăng xuất thành công."
+
+#: templates/registration/logout.html:8
+msgid "Click here to login again."
+msgstr "Nhấp vào đây để đăng nhập lại."
+
+#: templates/registration/password_reset_confirm.html:7
+msgid "Please enter (and confirm) your new password:"
+msgstr "Vui lòng nhập (và xác nhận) mật khẩu mới của bạn:"
+
+#: templates/registration/password_reset_confirm.html:15
+msgid "New password:"
+msgstr "Mật khẩu mới:"
+
+#: templates/registration/password_reset_confirm.html:22
+msgid "Confirm new password:"
+msgstr "Xác nhận mật khẩu mới:"
+
+#: templates/registration/password_reset_confirm.html:29
+msgid "Change my password"
+msgstr "Thay đổi mật khẩu của tôi"
+
+#: templates/registration/password_reset_confirm.html:35
+msgid "Password reset failed"
+msgstr "Thiết lập lại mật khẩu thất bại"
+
+#: templates/registration/password_reset_confirm.html:37
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used. Please request a new password reset."
+msgstr ""
+"Liên kết thiết lập lại mật khẩu không hợp lệ, có thể đã được sử dụng. Vui "
+"lòng yêu cầu thiết lập lại mật khẩu mới."
+
+#: templates/registration/password_reset_done.html:6
+msgid ""
+"A password reset link has been sent to your email address. Please check your "
+"inbox and follow the instructions to reset your password."
+msgstr ""
+"Một liên kết thiết lập lại mật khẩu đã được gửi đến địa chỉ email của bạn. "
+"Vui lòng kiểm tra hộp thư đến và làm theo hướng dẫn để thiết lập lại mật "
+"khẩu của bạn."
+
+#: templates/registration/password_reset_email.html:3
+#, python-format
+msgid ""
+"Someone asked for password reset for email %(email)s. Follow the link below:"
+msgstr ""
+"Ai đó đã yêu cầu thiết lập lại mật khẩu cho email %(email)s. Vui lòng theo "
+"dõi liên kết bên dưới:"
+
+#: templates/registration/password_reset_form.html:11
+msgid "Reset password"
+msgstr "Thiết lập lại mật khẩu"

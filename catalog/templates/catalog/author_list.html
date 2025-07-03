@@ -1,0 +1,43 @@
+{% extends 'base_generic.html' %}
+{% load i18n %}
+
+{% block content %}
+  <h1>{% trans 'Author List' %}</h1>
+  <a href="{% url 'author-create' %}">{% trans 'New author' %}</a>
+  {% if author_list %}
+    <ul>
+      {% for author in author_list %}
+        <li>
+          <a href="{% url 'author-detail' author.pk %}">{{ author.first_name }} {{ author.last_name }}</a>
+          {% if author.date_of_birth %}
+            ({% trans 'Born:' %} {{ author.date_of_birth|date:'Y-m-d' }})
+          {% endif %}
+          {% if author.date_of_death %}
+            ({% trans 'Died:' %} {{ author.date_of_death|date:'Y-m-d' }})
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>
+      {% trans 'No authors available.' %}
+    </p>
+  {% endif %}
+
+  {% if is_paginated %}
+    <div class="pagination">
+      <span class="page-links">
+        {% if page_obj.has_previous %}
+          <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">{% trans 'previous' %}</a>
+        {% endif %}
+        <span class="page-current">
+          {% blocktrans with current=page_obj.number total=page_obj.paginator.num_pages %}Page {{ current }} of {{ total }}
+          {% endblocktrans %}
+        </span>
+        {% if page_obj.has_next %}
+          <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">{% trans 'next' %}</a>
+        {% endif %}
+      </span>
+    </div>
+  {% endif %}
+{% endblock %}
