@@ -1,27 +1,32 @@
 {% extends 'base_generic.html' %}
+{% load i18n %}
 
 {% block content %}
-  <h1>Local Library Home</h1>
-  <p>Welcome to the Local Library. This is your one-stop destination for all your book needs.</p>
-  <h2>Dynamic content</h2>
-  <p>Here you can find the latest books, authors, and more.</p>
+  <h1>{% trans 'Local Library Home' %}</h1>
+  <p>
+    {% trans 'Welcome to the Local Library. This is your one-stop destination for all your book needs.' %}
+  </p>
+  <h2>{% trans 'Dynamic content' %}</h2>
+  <p>
+    {% trans 'Here you can find the latest books, authors, and more.' %}
+  </p>
 
   <ul>
     <li>
-      <strong>Books:</strong> {{ num_books }}
+      <strong>{% trans 'Books:' %}</strong> {{ num_books }}
     </li>
     <li>
-      <strong>Copies:</strong> {{ num_instances }}
+      <strong>{% trans 'Copies:' %}</strong> {{ num_instances }}
     </li>
     <li>
-      <strong>Copies Available:</strong> {{ num_instances_available }}
+      <strong>{% trans 'Copies Available:' %}</strong> {{ num_instances_available }}
     </li>
     <li>
-      <strong>Authors:</strong> {{ num_authors }}
+      <strong>{% trans 'Authors:' %}</strong> {{ num_authors }}
     </li>
   </ul>
 
   <p>
-    You have visited this page {{ num_visits }} time{% if num_visits > 1 %}s{% endif %}.
+    {% blocktrans count num_visits as counter %}You have visited this page {{ counter }} time.{% plural %}You have visited this page {{ counter }} times.{% endblocktrans %}
   </p>
 {% endblock %}

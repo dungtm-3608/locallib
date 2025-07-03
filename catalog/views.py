@@ -1,26 +1,27 @@
-from django.shortcuts import render
-from catalog.models import Book, Author, Genre, BookInstance
+from django.shortcuts import render, get_object_or_404
+from django.utils.translation import gettext as _
+from catalog.models import Book, Author, BookInstance
 from django.views import generic
-from django.shortcuts import get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin
-
-# Create your views here.
+from catalog.forms import RenewBookForm
+from django.contrib.auth.decorators import login_required, permission_required
+from django.http import HttpResponseRedirect
+from django.urls import reverse, reverse_lazy
+import datetime
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from catalog.enums import BookInstanceStatus
+import catalog.constants as constants
 
 def index(request):
     """View function for home page of site."""
 
-    # Generate counts of some of the main objects
-    num_books = Book.objects.all().count()
-    num_instances = BookInstance.objects.all().count()
-
-    # Available books (status = 'a')
-    num_instances_available = BookInstance.objects.filter(status__exact='a').count()
-
-    # The 'all()' is implied by default.
-    num_authors = Author.objects.count()  # The 'all()' is implied by default.
+    num_books = Book.objects.count()
+    num_instances = BookInstance.objects.count()
+    num_instances_available = BookInstance.objects.filter(status__exact=BookInstanceStatus.AVAILABLE).count()
+    num_authors = Author.objects.count()
 
     num_visits = request.session.get('num_visits', 1)
-    request.session['num_visits'] = num_visits + 1
+    request.session['num_visits'] = num_visits + constants.ADD_NUM_VISITS
 
     context = {
         'num_books': num_books,
@@ -29,29 +30,24 @@ def index(request):
         'num_authors': num_authors,
         'num_visits': num_visits,
     }
-
-    # Render the HTML template index.html with the data in the context variable
     return render(request, 'index.html', context=context)
 
 class BookListView(LoginRequiredMixin, generic.ListView):
     """Generic class-based view listing all books."""
     model = Book
-    context_object_name = 'book_list'  # Default is 'object_list'
-    queryset = Book.objects.filter(title__icontains='')  # Filter books with 'python' in the title
-    template_name = 'catalog/book_list.html' # Specify your own template
-    paginate_by = 2  # Number of books to display per page
+    context_object_name = 'book_list'  
+    queryset = Book.objects.filter(title__icontains='')  
+    template_name = 'catalog/book_list.html'
+    paginate_by = 2
 
     def get_context_data(self, **kwargs):
-        # Call the base implementation first to get a context
-        context = super(BookListView, self).get_context_data(**kwargs)
-        # Get the number of books
-        context['some_data'] = 'This is just some data'
-
+        context = super().get_context_data(**kwargs)
+        context['some_data'] = _("This is just some data")
         return context
-
 
 class BookDetailView(LoginRequiredMixin, generic.DetailView):
     model = Book
+
 
     def book_detail_view(request, primary_key):
         book = get_object_or_404(Book, pk=primary_key)
@@ -64,5 +60,68 @@ class LoanedBooksByUserListView(LoginRequiredMixin, generic.ListView):
     paginate_by = 10
 
     def get_queryset(self):
-        """Return the books on loan to the current user."""
-        return BookInstance.objects.filter(borrower=self.request.user).filter(status__exact='o').order_by('due_back')
+        return BookInstance.objects.filter(
+            borrower=self.request.user,
+            status=BookInstanceStatus.ON_LOAN
+        ).order_by('due_back')
+    
+@login_required
+@permission_required('catalog.can_mark_returned', raise_exception=True)
+def renew_book_librarian(request, pk):
+    """View function for renewing a specific book instance by librarian."""
+    book_instance = get_object_or_404(BookInstance, pk=pk)
+
+    if request.method == 'POST':
+        form = RenewBookForm(request.POST)
+
+        if form.is_valid():
+            book_instance.due_back = form.cleaned_data['renewal_date']
+            book_instance.save()
+            return HttpResponseRedirect(reverse('my-borrowed'))
+    else: 
+        proposed_renewal_date = datetime.date.today() + datetime.timedelta(weeks=3)
+        form = RenewBookForm(initial={'renewal_date': proposed_renewal_date})
+
+    context = {
+        'form': form,
+        'book_instance': book_instance,
+    }
+
+    return render(request, 'catalog/book_renew_librarian.html', context)
+
+class AuthorCreateView(CreateView):
+    model = Author
+    fields = ['first_name', 'last_name', 'date_of_birth', 'date_of_death']
+    initial = {
+        'date_of_birth': '01/01/1970',
+        'date_of_death': '01/01/2020',
+    }
+
+class AuthorUpdateView(UpdateView):
+    model = Author
+    fields = ('first_name', 'last_name', 'date_of_birth', 'date_of_death')
+
+class AuthorDeleteView(DeleteView):
+    model = Author
+    success_url = reverse_lazy('authors')
+
+class AuthorListView(generic.ListView):
+    """Generic class-based view listing all authors."""
+    model = Author
+    context_object_name = 'author_list'
+    template_name = 'catalog/author_list.html'
+    paginate_by = 10
+    queryset = Author.objects.all()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['some_data'] = _("This is just some data")
+        return context
+
+class AuthorDetailView(generic.DetailView):
+    """Generic class-based view for an author detail page."""
+    model = Author
+
+    def author_detail_view(request, primary_key):
+        author = get_object_or_404(Author, pk=primary_key)
+        return render(request, 'catalog/author_detail.html', context={'author': author})

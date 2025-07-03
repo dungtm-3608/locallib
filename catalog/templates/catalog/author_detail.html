@@ -1,0 +1,16 @@
+{% extends 'base_generic.html' %}
+{% load i18n %}
+
+{% block content %}
+  <h1>{% trans 'Author:' %} {{ author.first_name }} {{ author.last_name }}</h1>
+  {% if author.date_of_birth %}
+    <p>
+      <strong>{% trans 'Date of Birth:' %}</strong> {{ author.date_of_birth|date:'Y-m-d' }}
+    </p>
+  {% endif %}
+  {% if author.date_of_death %}
+    <p>
+      <strong>{% trans 'Date of Death:' %}</strong> {{ author.date_of_death|date:'Y-m-d' }}
+    </p>
+  {% endif %}
+{% endblock %}

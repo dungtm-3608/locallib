@@ -1,17 +1,22 @@
 {% extends 'base_generic.html' %}
+{% load i18n %}
 
 {% block content %}
-  <h1>Borrowed Books</h1>
+  <h1>{% trans 'Borrowed Books' %}</h1>
 
-  {% if bookinstace_list %}
+  {% if bookinstance_list %}
     <ul>
-      {% for bookinstance in bookinstace_list %}
+      {% for bookinstance in bookinstance_list %}
         <li class="{% if bookinstance.is_overdue %}text-danger{% endif %}">
           <a href="{% url 'book-detail' bookinstance.book.pk %}">{{ bookinstance.book.title }} ({{ bookinstance.due_back }})</a>
+          -
+          <a href="{% url 'renew-book-librarian' bookinstance.pk %}">{% trans 'Renew' %}</a>
         </li>
       {% endfor %}
     </ul>
   {% else %}
-    <p>No borrowed books found.</p>
+    <p>
+      {% trans 'No borrowed books found.' %}
+    </p>
   {% endif %}
 {% endblock %}
